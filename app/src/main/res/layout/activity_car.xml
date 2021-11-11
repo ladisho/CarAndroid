@@ -41,12 +41,12 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/placemarkTitle"
+                    android:id="@+id/carModel"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="8dp"
                     android:autofillHints="hint"
-                    android:hint="@string/hint_carTitle"
+                    android:hint="@string/hint_carModel"
                     android:inputType="text"
                     android:maxLength="25"
                     android:maxLines="1"

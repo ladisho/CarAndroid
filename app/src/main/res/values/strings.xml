@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Car</string>
     <string name="button_addCar">Add Car</string>
-    <string name="hint_carTitle">Car Title</string>
+    <string name="hint_carModel">Car Model</string>
 </resources>
