@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Car">
         <activity
-            android:name=".CarActivity"
+            android:name=".activities.CarActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
