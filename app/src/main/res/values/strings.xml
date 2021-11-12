@@ -2,4 +2,7 @@
     <string name="app_name">Car</string>
     <string name="button_addCar">Add Car</string>
     <string name="hint_carModel">Car Model</string>
+    <string name="hint_carBrand">Car Brand</string>
+    <string name="hint_carYear">Car Year</string>
+    <string name="hint_carPlateNumber">Car PlateNumber</string>
 </resources>

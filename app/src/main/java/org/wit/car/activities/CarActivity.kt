@@ -1,7 +1,7 @@
 package org.wit.car.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import org.wit.car.R
 import org.wit.car.databinding.ActivityCarBinding
@@ -10,11 +10,11 @@ import timber.log.Timber
 import timber.log.Timber.i
 
 
-
 class CarActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCarBinding
     var car = CarModel()
+    val cars = ArrayList<CarModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,13 +29,62 @@ class CarActivity : AppCompatActivity() {
 
         binding.btnAdd.setOnClickListener() {
             car.model = binding.carModel.text.toString()
+            car.brand = binding.carBrand.text.toString()
+            if (binding.carYear.text.isNotEmpty()){
+                car.year = Integer.parseInt(binding.carYear.text.toString())
+            }else{
+                car.year = 9999
+            }
+
+            car.plateNumber = binding.carPlateNumber.text.toString()
+            var msg:String =""
             if (car.model.isNotEmpty()) {
                 i("add Button Pressed: ${car.model}")
+
+
             }
             else {
+                msg += "Please enter a model\n"
+//                Snackbar
+//                    .make(it,"Please Enter a model", Snackbar.LENGTH_LONG)
+//                    .show()
+            }
+            if (car.brand.isNotEmpty()) {
+                i("add Button Pressed: ${car.brand}")
+
+            }
+            else {
+                msg += "Please enter a brand\n"
+//                Snackbar
+//                    .make(it,"Please Enter a brand", Snackbar.LENGTH_LONG)
+//                    .show()
+            }
+            if (car.year > 0) {
+                i("add Button Pressed: ${car.year}")
+
+            }
+            else {
+                msg += "Please enter a year\n"
+//                Snackbar
+//                    .make(it,"Please Enter a brand", Snackbar.LENGTH_LONG)
+//                    .show()
+            }
+            if (car.plateNumber.isNotEmpty()) {
+                i("add Button Pressed: ${car.model} ${car.brand} ${car.year} ${car.plateNumber}")
+                cars.add(car.copy())
+                i("$car")
+            }
+            else {
+                msg += "Please enter a plateNumber"
+//                Snackbar
+//                    .make(it,"Please Enter a brand", Snackbar.LENGTH_LONG)
+//                    .show()
+            }
+            if(msg.isNotEmpty()){
                 Snackbar
-                    .make(it,"Please Enter a model", Snackbar.LENGTH_LONG)
+                    .make(it,msg, Snackbar.LENGTH_LONG)
                     .show()
+
             }
         }
 
