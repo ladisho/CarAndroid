@@ -86,7 +86,11 @@ class CarActivity : AppCompatActivity() {
             if (car.model.isNotEmpty() && car.brand.isNotEmpty() && car.year > 0 && car.plateNumber.isNotEmpty()){
                 i("add Button Pressed: ${car.model} ${car.brand} ${car.year} ${car.plateNumber}")
                 cars.add(car.copy())
-                i("$car")
+                for (i in cars.indices){
+                    i("Car[$i]: ${this.cars[i]}")
+                }
+
+
             }
 
             if(msg.isNotEmpty()){
