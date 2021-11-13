@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import org.wit.car.R
 import org.wit.car.databinding.ActivityCarBinding
+import org.wit.car.main.MainApp
 import org.wit.car.models.CarModel
 import timber.log.Timber
 import timber.log.Timber.i
@@ -14,19 +15,22 @@ class CarActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCarBinding
     var car = CarModel()
-    val cars = ArrayList<CarModel>()
+//    val cars = ArrayList<CarModel>()
+    lateinit var app: MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_car)
-
         binding = ActivityCarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+//        setContentView(R.layout.activity_car)
 
-        Timber.plant(Timber.DebugTree())
 
-        i("Car Activity started...")
 
+
+//        Timber.plant(Timber.DebugTree())
+//
+//        i("Car Activity started...")
+        app = application as MainApp
         binding.btnAdd.setOnClickListener() {
             car.model = binding.carModel.text.toString()
             car.brand = binding.carBrand.text.toString()
@@ -85,9 +89,9 @@ class CarActivity : AppCompatActivity() {
             }
             if (car.model.isNotEmpty() && car.brand.isNotEmpty() && car.year > 0 && car.plateNumber.isNotEmpty()){
                 i("add Button Pressed: ${car.model} ${car.brand} ${car.year} ${car.plateNumber}")
-                cars.add(car.copy())
-                for (i in cars.indices){
-                    i("Car[$i]: ${this.cars[i]}")
+                app.cars.add(car.copy())
+                for (i in app.cars.indices){
+                    i("Car[$i]: ${this.app.cars[i]}")
                 }
 
 
