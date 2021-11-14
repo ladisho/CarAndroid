@@ -13,5 +13,8 @@ class MainApp : Application() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
         i("Car started")
+        cars.add(CarModel("One", "Audi"))
+        cars.add(CarModel("Two", "Toyota"))
+        cars.add(CarModel("Three", "Mazda"))
     }
 }
