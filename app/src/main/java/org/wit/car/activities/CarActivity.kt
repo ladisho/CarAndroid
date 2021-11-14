@@ -93,6 +93,8 @@ class CarActivity : AppCompatActivity() {
                 for (i in app.cars.indices){
                     i("Car[$i]: ${this.app.cars[i]}")
                 }
+                setResult(RESULT_OK)
+                finish()
 
 
             }

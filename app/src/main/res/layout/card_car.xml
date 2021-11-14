@@ -20,12 +20,12 @@
             android:textSize="30sp"
             tools:text="A Brand" />
 
-        <TextView
-            android:id="@+id/carModel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/carModel"
-            tools:text="A Model" />
+<!--        <TextView-->
+<!--            android:id="@+id/carModel"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/carModel"-->
+<!--            tools:text="A Model" />-->
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

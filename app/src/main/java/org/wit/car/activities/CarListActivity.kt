@@ -1,9 +1,11 @@
 package org.wit.car.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
+import android.view.MenuItem
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -38,6 +40,16 @@ class CarListActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_add -> {
+                val launcherIntent = Intent(this, CarActivity::class.java)
+                startActivityForResult(launcherIntent,0)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
 
 class CarAdapter constructor(private var cars: List<CarModel>) :
@@ -61,7 +73,7 @@ class CarAdapter constructor(private var cars: List<CarModel>) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(car: CarModel) {
-            binding.carModel.text = car.model
+
             binding.carBrand.text = car.brand
         }
     }
