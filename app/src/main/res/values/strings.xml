@@ -6,4 +6,5 @@
     <string name="hint_carYear">Car Year</string>
     <string name="hint_carPlateNumber">Car PlateNumber</string>
     <string name="menu_addCar">Add</string>
+    <string name="menu_cancelCar">Cancel</string>
 </resources>

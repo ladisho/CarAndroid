@@ -1,6 +1,9 @@
 package org.wit.car.activities
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import org.wit.car.R
@@ -22,7 +25,10 @@ class CarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.toolbarAdd.title = title
+        setSupportActionBar(binding.toolbarAdd)
 //        setContentView(R.layout.activity_car)
+
 
 
 
@@ -107,5 +113,20 @@ class CarActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_activities, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_cancel -> {
+                val launcherIntent = Intent(this, CarListActivity::class.java)
+                startActivityForResult(launcherIntent,0)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
