@@ -3,18 +3,14 @@ package org.wit.car.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import org.wit.car.R
 import org.wit.car.adapters.CarAdapter
 import org.wit.car.databinding.ActivityCarListBinding
-import org.wit.car.databinding.CardCarBinding
 import org.wit.car.main.MainApp
-import org.wit.car.models.CarModel
+
 
 class CarListActivity : AppCompatActivity() {
 
@@ -27,13 +23,12 @@ class CarListActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
-
-
         app = application as MainApp
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = CarAdapter(app.cars)
+//        binding.recyclerView.adapter = CarAdapter(app.cars)
+        binding.recyclerView.adapter = CarAdapter(app.cars.findAll())
 
     }
 

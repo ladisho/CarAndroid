@@ -25,18 +25,12 @@ class CarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         binding.toolbarAdd.title = title
         setSupportActionBar(binding.toolbarAdd)
-//        setContentView(R.layout.activity_car)
-
-
-
-
-
-//        Timber.plant(Timber.DebugTree())
-//
-//        i("Car Activity started...")
         app = application as MainApp
+
+
         binding.btnAdd.setOnClickListener() {
             car.model = binding.carModel.text.toString()
             car.brand = binding.carBrand.text.toString()
@@ -60,9 +54,7 @@ class CarActivity : AppCompatActivity() {
             }
             else {
                 msg += "Please enter a model\n"
-//                Snackbar
-//                    .make(it,"Please Enter a model", Snackbar.LENGTH_LONG)
-//                    .show()
+
             }
             if (car.brand.isNotEmpty()) {
                 i("add Button Pressed: ${car.brand}")
@@ -70,9 +62,7 @@ class CarActivity : AppCompatActivity() {
             }
             else {
                 msg += "Please enter a brand\n"
-//                Snackbar
-//                    .make(it,"Please Enter a brand", Snackbar.LENGTH_LONG)
-//                    .show()
+
             }
             if (car.year > 0) {
                 i("add Button Pressed: ${car.year}")
@@ -80,25 +70,19 @@ class CarActivity : AppCompatActivity() {
             }
             else {
                 msg += "Please enter a year\n"
-//                Snackbar
-//                    .make(it,"Please Enter a brand", Snackbar.LENGTH_LONG)
-//                    .show()
+
             }
             if (car.plateNumber.isNotEmpty()) {
                 i("add Button Pressed: ${car.plateNumber}")
             }
             else {
                 msg += "Please enter a plateNumber"
-//                Snackbar
-//                    .make(it,"Please Enter a brand", Snackbar.LENGTH_LONG)
-//                    .show()
+
             }
             if (car.model.isNotEmpty() && car.brand.isNotEmpty() && car.year > 0 && car.plateNumber.isNotEmpty()){
                 i("add Button Pressed: ${car.model} ${car.brand} ${car.year} ${car.plateNumber}")
-                app.cars.add(car.copy())
-                for (i in app.cars.indices){
-                    i("Car[$i]: ${this.app.cars[i]}")
-                }
+//                app.cars.add(car.copy())
+                app.cars.create(car.copy())
                 setResult(RESULT_OK)
                 finish()
 
@@ -123,8 +107,7 @@ class CarActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_cancel -> {
-                val launcherIntent = Intent(this, CarListActivity::class.java)
-                startActivityForResult(launcherIntent,0)
+                finish()
             }
         }
         return super.onOptionsItemSelected(item)
