@@ -8,11 +8,13 @@ import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.wit.car.R
 import org.wit.car.adapters.CarAdapter
+import org.wit.car.adapters.CarListener
 import org.wit.car.databinding.ActivityCarListBinding
 import org.wit.car.main.MainApp
+import org.wit.car.models.CarModel
 
 
-class CarListActivity : AppCompatActivity() {
+class CarListActivity : AppCompatActivity(), CarListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityCarListBinding
@@ -27,8 +29,7 @@ class CarListActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-//        binding.recyclerView.adapter = CarAdapter(app.cars)
-        binding.recyclerView.adapter = CarAdapter(app.cars.findAll())
+        binding.recyclerView.adapter = CarAdapter(app.cars.findAll(),this)
 
     }
 
@@ -45,6 +46,11 @@ class CarListActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCarClick(car: CarModel) {
+        val launcherIntent = Intent(this, CarActivity::class.java)
+        startActivityForResult(launcherIntent,0)
     }
 }
 
