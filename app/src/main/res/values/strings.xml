@@ -7,4 +7,9 @@
     <string name="hint_carPlateNumber">Car PlateNumber</string>
     <string name="menu_addCar">Add</string>
     <string name="menu_cancelCar">Cancel</string>
+    <string name="str_enterCarModel">Please enter a model</string>
+    <string name="str_enterCarBrand">Please enter a brand</string>
+    <string name="str_enterCarYear">Please enter a year</string>
+    <string name="str_enterCarPlateNumber">Please enter a plateNumber</string>
+    <string name="txt_saveCar">Save Car</string>
 </resources>

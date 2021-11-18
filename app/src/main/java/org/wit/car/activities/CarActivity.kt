@@ -22,6 +22,12 @@ class CarActivity : AppCompatActivity() {
     lateinit var app: MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        var carModel: String = getString(R.string.str_enterCarModel)
+        var carBrand: String = getString(R.string.str_enterCarBrand)
+        var carYear: String = getString(R.string.str_enterCarYear)
+        var carPlateNumber: String = getString(R.string.str_enterCarPlateNumber)
+        var edit = false
+
         super.onCreate(savedInstanceState)
         binding = ActivityCarBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -31,11 +37,13 @@ class CarActivity : AppCompatActivity() {
         app = application as MainApp
 
         if (intent.hasExtra("car_edit")) {
+            edit = true
             car = intent.extras?.getParcelable("car_edit")!!
             binding.carModel.setText(car.model)
             binding.carBrand.setText(car.brand)
             binding.carYear.setText(car.year.toString())
             binding.carPlateNumber.setText(car.plateNumber)
+            binding.btnAdd.setText(R.string.txt_saveCar)
         }
 
         binding.btnAdd.setOnClickListener() {
@@ -60,7 +68,7 @@ class CarActivity : AppCompatActivity() {
 
             }
             else {
-                msg += "Please enter a model\n"
+                msg += "$carModel \n"
 
             }
             if (car.brand.isNotEmpty()) {
@@ -68,7 +76,7 @@ class CarActivity : AppCompatActivity() {
 
             }
             else {
-                msg += "Please enter a brand\n"
+                msg += "$carBrand \n"
 
             }
             if (car.year > 0) {
@@ -76,20 +84,24 @@ class CarActivity : AppCompatActivity() {
 
             }
             else {
-                msg += "Please enter a year\n"
+                msg += "$carYear \n"
 
             }
             if (car.plateNumber.isNotEmpty()) {
                 i("add Button Pressed: ${car.plateNumber}")
             }
             else {
-                msg += "Please enter a plateNumber"
+                msg += "$carPlateNumber"
 
             }
             if (car.model.isNotEmpty() && car.brand.isNotEmpty() && car.year > 0 && car.plateNumber.isNotEmpty()){
                 i("add Button Pressed: ${car.model} ${car.brand} ${car.year} ${car.plateNumber}")
 //                app.cars.add(car.copy())
-                app.cars.create(car.copy())
+                if (edit){
+                    app.cars.update(car.copy())
+                }else{
+                    app.cars.create(car.copy())
+                }
                 setResult(RESULT_OK)
                 finish()
 
