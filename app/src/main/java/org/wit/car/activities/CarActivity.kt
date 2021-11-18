@@ -30,6 +30,13 @@ class CarActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbarAdd)
         app = application as MainApp
 
+        if (intent.hasExtra("car_edit")) {
+            car = intent.extras?.getParcelable("car_edit")!!
+            binding.carModel.setText(car.model)
+            binding.carBrand.setText(car.brand)
+            binding.carYear.setText(car.year.toString())
+            binding.carPlateNumber.setText(car.plateNumber)
+        }
 
         binding.btnAdd.setOnClickListener() {
             car.model = binding.carModel.text.toString()
@@ -96,6 +103,8 @@ class CarActivity : AppCompatActivity() {
 
             }
         }
+
+
 
     }
 

@@ -50,6 +50,7 @@ class CarListActivity : AppCompatActivity(), CarListener {
 
     override fun onCarClick(car: CarModel) {
         val launcherIntent = Intent(this, CarActivity::class.java)
+        launcherIntent.putExtra("car_edit", car)
         startActivityForResult(launcherIntent,0)
     }
 }
