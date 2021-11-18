@@ -2,6 +2,12 @@ package org.wit.car.models
 
 import timber.log.Timber.i
 
+var lastId = 0L
+
+internal fun getId(): Long {
+    return lastId++
+}
+
 class CarMemStore : CarStore {
 
     val cars = ArrayList<CarModel>()
@@ -11,8 +17,20 @@ class CarMemStore : CarStore {
     }
 
     override fun create(car: CarModel) {
+        car.id = getId()
         cars.add(car)
         logAll()
+    }
+
+    override fun update(car: CarModel) {
+        var foundCar: CarModel? = cars.find { c -> c.id == car.id }
+        if (foundCar != null) {
+            foundCar.model = car.model
+            foundCar.brand = car.brand
+            foundCar.year = car.year
+            foundCar.plateNumber = car.plateNumber
+            logAll()
+        }
     }
 
     fun logAll() {
