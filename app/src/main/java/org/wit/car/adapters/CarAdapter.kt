@@ -32,8 +32,10 @@ class CarAdapter constructor(private var cars: List<CarModel>,
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(car: CarModel, listener: CarListener) {
-
+            binding.carModel.text = car.model
             binding.carBrand.text = car.brand
+            binding.carYear.text = car.year.toString()
+            binding.carPlateNumber.text = car.plateNumber
             binding.root.setOnClickListener { listener.onCarClick(car) }
         }
     }
