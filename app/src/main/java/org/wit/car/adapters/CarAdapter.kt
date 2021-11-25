@@ -3,6 +3,7 @@ package org.wit.car.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import org.wit.car.databinding.CardCarBinding
 import org.wit.car.models.CarModel
 
@@ -36,6 +37,9 @@ class CarAdapter constructor(private var cars: List<CarModel>,
             binding.carBrand.text = car.brand
             binding.carYear.text = car.year.toString()
             binding.carPlateNumber.text = car.plateNumber
+            Picasso.get()
+                .load(car.image)
+                .into(binding.imageView)
             binding.root.setOnClickListener { listener.onCarClick(car) }
         }
     }

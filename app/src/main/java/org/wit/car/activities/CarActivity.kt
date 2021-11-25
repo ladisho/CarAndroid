@@ -52,6 +52,7 @@ class CarActivity : AppCompatActivity() {
             Picasso.get()
                 .load(car.image)
                 .into(binding.carImage)
+            binding.chooseImage.setText(R.string.button_changeImage)
         }
 
         binding.btnAdd.setOnClickListener() {
