@@ -49,6 +49,9 @@ class CarActivity : AppCompatActivity() {
             binding.carYear.setText(car.year.toString())
             binding.carPlateNumber.setText(car.plateNumber)
             binding.btnAdd.setText(R.string.txt_saveCar)
+            Picasso.get()
+                .load(car.image)
+                .into(binding.carImage)
         }
 
         binding.btnAdd.setOnClickListener() {
