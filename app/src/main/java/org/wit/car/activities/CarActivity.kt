@@ -8,6 +8,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import org.wit.car.R
 import org.wit.car.databinding.ActivityCarBinding
 import org.wit.car.helpers.showImagePicker
@@ -152,6 +153,10 @@ class CarActivity : AppCompatActivity() {
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Result ${result.data!!.data}")
+                            car.image = result.data!!.data!!
+                            Picasso.get()
+                                .load(car.image)
+                                .into(binding.carImage)
                         } // end of if
                     }
                     RESULT_CANCELED -> { } else -> { }
