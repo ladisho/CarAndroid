@@ -12,4 +12,5 @@
     <string name="str_enterCarYear">Please enter a year</string>
     <string name="str_enterCarPlateNumber">Please enter a plateNumber</string>
     <string name="txt_saveCar">Save Car</string>
+    <string name="button_addImage"> Add Image </string>
 </resources>

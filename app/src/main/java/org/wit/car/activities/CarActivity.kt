@@ -116,7 +116,9 @@ class CarActivity : AppCompatActivity() {
             }
         }
 
-
+        binding.chooseImage.setOnClickListener {
+            i("Select image")
+        }
 
     }
 
