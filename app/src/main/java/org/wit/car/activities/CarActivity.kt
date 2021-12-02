@@ -25,6 +25,7 @@ class CarActivity : AppCompatActivity() {
 //    val cars = ArrayList<CarModel>()
     lateinit var app: MainApp
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         var carModel: String = getString(R.string.str_enterCarModel)
@@ -135,6 +136,13 @@ class CarActivity : AppCompatActivity() {
             i ("Set Location Pressed")
         }
 
+        registerMapCallback()
+
+        binding.carLocation.setOnClickListener {
+            val launcherIntent = Intent(this, MapActivity::class.java)
+            mapIntentLauncher.launch(launcherIntent)
+        }
+
     }
 
 
@@ -170,5 +178,11 @@ class CarActivity : AppCompatActivity() {
                     RESULT_CANCELED -> { } else -> { }
                 }
             }
+    }
+
+    private fun registerMapCallback() {
+        mapIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { i("Map Loaded") }
     }
 }
