@@ -131,6 +131,10 @@ class CarActivity : AppCompatActivity() {
 
         registerImagePickerCallback()
 
+        binding.carLocation.setOnClickListener {
+            i ("Set Location Pressed")
+        }
+
     }
 
 
