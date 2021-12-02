@@ -10,30 +10,31 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import org.wit.car.R
-import org.wit.car.databinding.ActivityMapBinding
+import org.wit.car.models.Location
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
-    private lateinit var mMap: GoogleMap
-    private lateinit var binding: ActivityMapBinding
+    private lateinit var map: GoogleMap
+    var location = Location()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityMapBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        setContentView(R.layout.activity_map)
+        location = intent.extras?.getParcelable<Location>("location")!!
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
-
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-        val wit = LatLng(52.245696, -7.139102)
-        mMap.addMarker(MarkerOptions().position(wit).title("Marker in Waterford"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(wit, 16f))
+        map = googleMap
+        val loc = LatLng(location.lat, location.lng)
+        val options = MarkerOptions()
+            .title("Car")
+            .snippet("GPS : $loc")
+            .draggable(true)
+            .position(loc)
+        map.addMarker(options)
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
     }
 }

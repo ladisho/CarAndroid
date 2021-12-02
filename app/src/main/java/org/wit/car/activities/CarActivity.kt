@@ -14,6 +14,7 @@ import org.wit.car.databinding.ActivityCarBinding
 import org.wit.car.helpers.showImagePicker
 import org.wit.car.main.MainApp
 import org.wit.car.models.CarModel
+import org.wit.car.models.Location
 import timber.log.Timber
 import timber.log.Timber.i
 
@@ -139,7 +140,9 @@ class CarActivity : AppCompatActivity() {
         registerMapCallback()
 
         binding.carLocation.setOnClickListener {
+            val location = Location(52.245696, -7.139102, 15f)
             val launcherIntent = Intent(this, MapActivity::class.java)
+                .putExtra("location", location)
             mapIntentLauncher.launch(launcherIntent)
         }
 
