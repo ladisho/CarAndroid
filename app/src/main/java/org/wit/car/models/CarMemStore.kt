@@ -30,6 +30,9 @@ class CarMemStore : CarStore {
             foundCar.year = car.year
             foundCar.plateNumber = car.plateNumber
             foundCar.image = car.image
+            foundCar.lat = car.lat
+            foundCar.lng = car.lng
+            foundCar.zoom = car.zoom
             logAll()
         }
     }

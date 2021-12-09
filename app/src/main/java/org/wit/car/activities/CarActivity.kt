@@ -27,7 +27,7 @@ class CarActivity : AppCompatActivity() {
     lateinit var app: MainApp
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
-    var location = Location(52.245696, -7.139102, 15f)
+//    var location = Location(52.245696, -7.139102, 15f)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         var carModel: String = getString(R.string.str_enterCarModel)
@@ -141,6 +141,12 @@ class CarActivity : AppCompatActivity() {
         registerMapCallback()
 
         binding.carLocation.setOnClickListener {
+            val location = Location(52.245696, -7.139102, 15f)
+            if (car.zoom != 0f) {
+                location.lat =  car.lat
+                location.lng = car.lng
+                location.zoom = car.zoom
+            }
             val launcherIntent = Intent(this, MapActivity::class.java)
                 .putExtra("location", location)
             mapIntentLauncher.launch(launcherIntent)
@@ -191,8 +197,11 @@ class CarActivity : AppCompatActivity() {
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Location ${result.data.toString()}")
-                            location = result.data!!.extras?.getParcelable("location")!!
+                            val location = result.data!!.extras?.getParcelable<Location>("location")!!
                             i("Location == $location")
+                            car.lat = location.lat
+                            car.lng = location.lng
+                            car.zoom = location.zoom
                         } // end of if
                     }
                     RESULT_CANCELED -> { } else -> { }
