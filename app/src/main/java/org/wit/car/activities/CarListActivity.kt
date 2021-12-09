@@ -28,14 +28,14 @@ class CarListActivity : AppCompatActivity(), CarListener {
         setContentView(binding.root)
         binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
+
         app = application as MainApp
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = CarAdapter(app.cars.findAll(),this)
+        loadCars()
 
         registerRefreshCallback()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -62,7 +62,16 @@ class CarListActivity : AppCompatActivity(), CarListener {
     private fun registerRefreshCallback() {
         refreshIntentLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-            { binding.recyclerView.adapter?.notifyDataSetChanged() }
+            { loadCars() }
+    }
+
+    private fun loadCars() {
+        showCars(app.cars.findAll())
+    }
+
+    fun showCars (cars: List<CarModel>) {
+        binding.recyclerView.adapter = CarAdapter(cars, this)
+        binding.recyclerView.adapter?.notifyDataSetChanged()
     }
 }
 
