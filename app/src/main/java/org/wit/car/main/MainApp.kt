@@ -1,6 +1,7 @@
 package org.wit.car.main
 
 import android.app.Application
+import org.wit.car.models.CarJSONStore
 import org.wit.car.models.CarMemStore
 import org.wit.car.models.CarStore
 //import org.wit.car.models.CarModel
@@ -16,7 +17,8 @@ class MainApp : Application() {
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-        cars = CarMemStore()
+//        cars = CarMemStore()
+        cars = CarJSONStore(applicationContext)
         i("Car started")
 
     }
