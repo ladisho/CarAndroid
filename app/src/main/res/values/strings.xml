@@ -6,6 +6,7 @@
     <string name="hint_carYear">Car Year</string>
     <string name="hint_carPlateNumber">Car PlateNumber</string>
     <string name="menu_addCar">Add</string>
+    <string name="menu_deleteCar">Delete</string>
     <string name="menu_cancelCar">Cancel</string>
     <string name="str_enterCarModel">Please enter a model</string>
     <string name="str_enterCarBrand">Please enter a brand</string>

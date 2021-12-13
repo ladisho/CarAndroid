@@ -166,6 +166,10 @@ class CarActivity : AppCompatActivity() {
             R.id.item_cancel -> {
                 finish()
             }
+            R.id.item_delete -> {
+                app.cars.delete(car)
+                finish()
+            }
         }
         return super.onOptionsItemSelected(item)
     }

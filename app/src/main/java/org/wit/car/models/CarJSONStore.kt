@@ -43,7 +43,25 @@ class CarJSONStore(private val context: Context) : CarStore {
 
 
     override fun update(car: CarModel) {
-        // todo
+        var foundCar: CarModel? = cars.find { c -> c.id == car.id }
+        if (foundCar != null) {
+            foundCar.model = car.model
+            foundCar.brand = car.brand
+            foundCar.year = car.year
+            foundCar.plateNumber = car.plateNumber
+            foundCar.image = car.image
+            foundCar.lat = car.lat
+            foundCar.lng = car.lng
+            foundCar.zoom = car.zoom
+            logAll()
+            serialize()
+        }
+
+    }
+
+    override fun delete(car: CarModel) {
+        cars.remove(car)
+        serialize()
     }
 
     private fun serialize() {
